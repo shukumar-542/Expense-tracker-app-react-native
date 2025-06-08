@@ -7,13 +7,13 @@ const dummyExpenses = [
     {
         id : "e1",
         description:  ' A Pair of shoes',
-        amount : 59.99,
+        amount : 69.99,
         date : new Date("2025-12-19") 
     },
     {
         id : "e2",
         description:  ' A Pair of trousers',
-        amount : 59.99,
+        amount : 66.99,
         date : new Date("2025-01-05") 
     },
     {
@@ -34,6 +34,30 @@ const dummyExpenses = [
         amount : 59.99,
         date : new Date("2025-12-15") 
     },
+    {
+        id : "e6",
+        description:  'Some Mobile',
+        amount : 59.99,
+        date : new Date("2025-13-15") 
+    },
+    {
+        id : "e7",
+        description:  'Some Books',
+        amount : 59.99,
+        date : new Date("2025-12-15") 
+    },
+    {
+        id : "e8",
+        description:  'Some Books',
+        amount : 59.99,
+        date : new Date("2025-12-15") 
+    },
+    {
+        id : "e9",
+        description:  'Some Books',
+        amount : 59.99,
+        date : new Date("2025-12-15") 
+    },
 ]
 
 const ExpensesOutput = ({expenses , expensesPeriod}) => {
@@ -50,7 +74,9 @@ export default ExpensesOutput
 const styles = StyleSheet.create({
     container : {
         flex : 1,
-        padding : 24,
+        paddingHorizontal : 24,
+        paddingTop : 20,
+        paddingBottom : 0,
         backgroundColor : GlobalStyles.colors.primary700
     }
 })
