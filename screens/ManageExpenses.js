@@ -6,7 +6,7 @@ import Button from "../components/UI/Button";
 import { ExpensesContext } from "../store/expenses-context";
 
 const ManageExpenses = ({ route, navigation }) => {
- const expensesCtx =  useContext(ExpensesContext)
+  const expensesCtx = useContext(ExpensesContext);
   const editedExpenseId = route?.params?.expenseId;
 
   const isEditing = !!editedExpenseId;
@@ -16,16 +16,30 @@ const ManageExpenses = ({ route, navigation }) => {
     });
   }, [navigation, isEditing]);
   const deleteExpenseHandler = () => {
-    expensesCtx.deleteExpense(editedExpenseId)
-    navigation.goBack()
-
+    expensesCtx.deleteExpense(editedExpenseId);
+    navigation.goBack();
   };
   const cancelHandler = () => {
-    navigation.goBack()
+    navigation.goBack();
   };
   const confirmHandler = () => {
-    navigation.goBack()
- 
+    if (isEditing) {
+      expensesCtx.updateExpense({
+        id: editedExpenseId,
+        expensesData: {
+          description: "Test!!!",
+          amount: 29.99,
+          date: new Date("2025-06-09"),
+        },
+      });
+    } else {
+      expensesCtx.addExpense({
+        description: "Test",
+        amount: 19.99,
+        date: new Date("2025-06-09"),
+      });
+    }
+    navigation.goBack();
   };
 
   return (
@@ -34,7 +48,9 @@ const ManageExpenses = ({ route, navigation }) => {
         <Button style={styles.button} mode={"flat"} onPress={cancelHandler}>
           Cancel
         </Button>
-        <Button  style={styles.button}  onPress={confirmHandler}>{isEditing ? "Update" : "Add"}</Button>
+        <Button style={styles.button} onPress={confirmHandler}>
+          {isEditing ? "Update" : "Add"}
+        </Button>
       </View>
       {isEditing && (
         <View style={styles.deleteContainer}>
@@ -59,12 +75,12 @@ const styles = StyleSheet.create({
   },
   buttons: {
     flexDirection: "row",
-    justifyContent : 'center',
-    alignItems :'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
-  button : {
-    minWidth : 120,
-    marginHorizontal:8
+  button: {
+    minWidth: 120,
+    marginHorizontal: 8,
   },
   deleteContainer: {
     marginTop: 16,
@@ -73,5 +89,4 @@ const styles = StyleSheet.create({
     borderTopColor: GlobalStyles.colors.primary200,
     alignItems: "center",
   },
-
 });

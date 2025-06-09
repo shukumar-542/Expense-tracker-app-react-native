@@ -12,7 +12,7 @@ const RecentExpenses = () => {
     return  expenseDate >= date7DaysAgo && expenseDate <= today;
   })
   return (
-    <ExpensesOutput expenses={recentExpenses} expensesPeriod={"Last 7 days"}/>
+    <ExpensesOutput expenses={recentExpenses} expensesPeriod={"Last 7 days"} fallbackText={"No Expenses register last 7 days"}/>
   )
 }
 
